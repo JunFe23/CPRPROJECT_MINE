@@ -1,0 +1,2 @@
+com/CPR/redHome/RedHomeApplicationTests.java
+ com.CPR.redHome.RedHomeApplicationTests
