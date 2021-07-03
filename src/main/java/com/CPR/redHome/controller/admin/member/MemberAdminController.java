@@ -34,7 +34,7 @@ public class MemberAdminController {
     // 멤버페이지 통계
     @GetMapping("admin/member/chart")
     public String adminMemberChart() {
-        return "admin/Chart";
+        return "admin/chart/memberChart";
     }
 
 

@@ -13,7 +13,12 @@ public interface MemberAdminMapper {
     // 전체 멤버 조회
     List<MemberDto> selectAllMember();
 
-    // 나이대 별 멤버 수 조회
+    // 나이대 별 회원 수 조회
     LinkedHashMap<String, Integer> selectMemberByAge();
 
+    // 지역 별 회원 수 조회
+    LinkedHashMap<String, Integer> selectMemberByLocation();
+
+    // 등급 별 회원 수 조회
+    LinkedHashMap<String, Integer> selectMemberByGrade();
 }

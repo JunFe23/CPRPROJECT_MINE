@@ -13,9 +13,15 @@ public interface MemberAdminService {
     List<MemberDto> selectAllMember();
 
 
-    // 회원 통계
-    // 나이대 별 회원 조회
+    // @@@@@@@ 회원 통계 @@@@@@@@
+    // 연령대 별 회원 수 조회
     JSONObject selectMemberByAge();
+
+    // 지역 별 회원 수 조회
+    JSONObject selectMemberByLocation();
+
+    // 등급 별 회원 수 조회
+    JSONObject selectMemberByGrade();
 
 
 }
