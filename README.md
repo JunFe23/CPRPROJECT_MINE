@@ -42,4 +42,5 @@
 - javascript로 차트 생성 함수 재사용 가능하게 구현.
 - 회원 통계내기 완료.(연령 별, 지역 별, 등급 별)
 - 관리자 페이지/ 통계페이지 세분화(디자인은 아직 x) 
+
 ![image](https://user-images.githubusercontent.com/75111342/124349142-bcd7e480-dc28-11eb-9abe-6fb2b001d10c.png)
