@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Log4j2
 public class MainAdminController {
     // 관리자 메인 페이지
+    @GetMapping("/admin")
+    public String adminHome(){
+        return "admin/adminHome";
+    }
+
+    // 관리자 통계 페이지
     @GetMapping("/admin/statistics")
     public String adminStatisticsHome(){
         return "admin/chart/chartMain";

@@ -4,7 +4,7 @@
 <mapper namespace="com.CPR.redHome.mapper.admin.member.MemberAdminMapper">
 
     <!-- 전체 회원 조회. -->
-    <select id="selectAllMember" resultType="com.CPR.redHome.dto.member.MemberDto">
+    <select id="selectAllMembers" resultType="com.CPR.redHome.dto.member.MemberDto">
         select
             member_id as memberId
             ,account_id as accountId

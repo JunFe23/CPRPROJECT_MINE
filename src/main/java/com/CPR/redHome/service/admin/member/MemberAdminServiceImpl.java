@@ -23,8 +23,8 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 
     // 전체회원 조회
     @Override
-    public List<MemberDto> selectAllMember() {
-        return memberAdminMapper.selectAllMember();
+    public List<MemberDto> selectAllMembers() {
+        return memberAdminMapper.selectAllMembers();
     }
 
 

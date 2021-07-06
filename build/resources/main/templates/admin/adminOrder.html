@@ -50,8 +50,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${orders}" var="order" >
-            <tr>
+            <tr th:each="order : ${orderDtos}">
                 <td>${order.order_num}</td>
                 <td>${order.member_id}</td>
                 <td>${order.order_date}</td>
@@ -64,7 +63,6 @@
                 <td><button>수정</button></td>
                 <td><button>삭제</button></td>
             </tr>
-        </c:forEach>
         </tbody>
     </table>
 </div>

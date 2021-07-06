@@ -11,7 +11,7 @@ import java.util.Map;
 public interface MemberAdminMapper {
 
     // 전체 멤버 조회
-    List<MemberDto> selectAllMember();
+    List<MemberDto> selectAllMembers();
 
     // 나이대 별 회원 수 조회
     LinkedHashMap<String, Integer> selectMemberByAge();

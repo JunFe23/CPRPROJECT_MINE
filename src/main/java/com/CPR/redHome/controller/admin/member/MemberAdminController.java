@@ -17,16 +17,10 @@ public class MemberAdminController {
 
     private final MemberAdminService memberAdminService;
 
-    // 관리자 메인 페이지
-    @GetMapping("/admin")
-    public String adminHome(){
-        return "admin/adminHome";
-    }
-
     // 전체 회원 조회
     @GetMapping("/admin/member")
     public String adminMember(Model model){
-        List<MemberDto> memberDtos = memberAdminService.selectAllMember();
+        List<MemberDto> memberDtos = memberAdminService.selectAllMembers();
         model.addAttribute("memberDtos", memberDtos);
         return "admin/adminMember";
     }
@@ -42,17 +36,9 @@ public class MemberAdminController {
 
 
     // =================== 아래 추후 분리 예정 ===================
-    // 상품페이지 조회
-    @GetMapping("/admin/product")
-    public String adminProduct(){
-        return "admin/adminProduct";
-    }
 
-    // 주문 페이지 조회
-    @GetMapping("/admin/order")
-    public String adminOrder(){
-        return "admin/adminOrder";
-    }
+
+
 
     // 문의 페이지 조회
     @GetMapping("/admin/qna")
@@ -71,6 +57,6 @@ public class MemberAdminController {
     // 상품 수정
     @GetMapping("/adminMember/adminProduct/edit")
     public String adminProductEdit() {
-        return "admin/product/productEdit";
+        return "productModify";
     }
 }

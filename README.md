@@ -44,3 +44,15 @@
 - 관리자 페이지/ 통계페이지 세분화(디자인은 아직 x) 
 
 ![image](https://user-images.githubusercontent.com/75111342/124349142-bcd7e480-dc28-11eb-9abe-6fb2b001d10c.png)
+
+## 2021.07.05
+- productdto 작성
+- productAdminController 추가
+- productAdminService 추가
+- 관리자 페이지 -> 상품페이지 상품 리스트 뿌리기, 통계페이지 작성.
+
+## 2021.07.06
+- ProductAdminMapper 보완.
+- 상품 통계페이지 -> 카테고리 별 통계, 테마 별 통계 작성
+- 관리자 주문페이지 작성중 -> dto 문제로 내일 회의 후 작성 추가
+- 상품 수정 페이지 작성중

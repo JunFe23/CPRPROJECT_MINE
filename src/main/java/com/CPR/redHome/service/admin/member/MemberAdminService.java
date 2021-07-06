@@ -10,7 +10,7 @@ import java.util.Map;
 public interface MemberAdminService {
 
     // 전체 회원 조회
-    List<MemberDto> selectAllMember();
+    List<MemberDto> selectAllMembers();
 
 
     // @@@@@@@ 회원 통계 @@@@@@@@
