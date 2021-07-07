@@ -5,8 +5,10 @@ import com.CPR.redHome.service.admin.member.MemberAdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -23,6 +25,14 @@ public class MemberAdminController {
         List<MemberDto> memberDtos = memberAdminService.selectAllMembers();
         model.addAttribute("memberDtos", memberDtos);
         return "admin/adminMember";
+    }
+
+    // memberId로 회원 조회
+    @Transactional(readOnly = true)
+    @GetMapping("/admin/member/update/{memberId}")
+    public String adminSelectMemberById(@PathVariable int memberId, Model model){
+        model.addAttribute("memberDetails",memberAdminService.selectMemberById(memberId));
+        return "admin/member/memberUpdate";
     }
 
     // 멤버페이지 통계

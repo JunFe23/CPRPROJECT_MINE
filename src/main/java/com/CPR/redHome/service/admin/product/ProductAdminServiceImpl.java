@@ -21,8 +21,27 @@ public class ProductAdminServiceImpl implements ProductAdminService{
 
     // 전체 상품 조회
     @Override
-    public List<ProductDto> SelectAllProducts() {
+    public List<ProductDto> selectAllProducts() {
         return productAdminMapper.selectAllProducts();
+    }
+
+    // productId로 상품 정보 조회
+    @Override
+    public ProductDto selectProductByProductId(int productId) {
+        ProductDto productDto = productAdminMapper.selectProductByProductId(productId);
+        return productDto;
+    }
+
+    // 상품 정보 update
+    @Override
+    public void updateProduct(ProductDto productDto) {
+        productAdminMapper.updateProduct(productDto);
+    }
+
+    // 상품 delete
+    @Override
+    public void deleteProduct(int productId) {
+        productAdminMapper.deleteProduct(productId);
     }
 
     // 가격대 별 상품 수 조회

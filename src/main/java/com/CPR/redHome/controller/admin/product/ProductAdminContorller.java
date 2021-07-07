@@ -5,11 +5,10 @@ import com.CPR.redHome.service.admin.product.ProductAdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
@@ -20,17 +19,36 @@ public class ProductAdminContorller {
     private final ProductAdminService productAdminService;
 
     // 상품페이지 조회
+    @Transactional(readOnly = true)
     @GetMapping("/admin/product")
     public String adminProduct(Model model){
-        List<ProductDto> productDtos = productAdminService.SelectAllProducts();
+        List<ProductDto> productDtos = productAdminService.selectAllProducts();
         model.addAttribute("productDtos", productDtos);
         return "admin/adminProduct";
     }
 
-    // 상품 수정
-    @GetMapping("/admin/product/modify")
-    public String adminProductModify(){
-        return "admin/product/productModify";
+    // 상품 수정 페이지 조회
+    @Transactional(readOnly = true)
+    @GetMapping("/admin/product/update/{productId}")
+    public String adminProductModify(@PathVariable int productId, Model model){
+        model.addAttribute("productDetails", productAdminService.selectProductByProductId(productId));
+        return "/admin/product/productUpdate";
+    }
+
+    // 상품 수정 내용 update
+    @Transactional
+    @PostMapping("/admin/product/update")
+    public String adminProductUpdate(ProductDto productDto){
+        productAdminService.updateProduct(productDto);
+        return "redirect:/admin/product";
+    }
+
+    // 상품 삭제
+    @Transactional
+    @GetMapping(value = "/admin/product/delete/{productId}")
+    public String adminProductDelete(@PathVariable int productId) {
+        productAdminService.deleteProduct(productId);
+        return "redirect:/admin/product";
     }
 
     // 상품페이지 통계

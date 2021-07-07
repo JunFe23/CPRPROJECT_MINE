@@ -7,6 +7,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
+
+        function updateMember(no){
+            location.href = "/admin/member/update/" + no;
+        }
+
         function searchMember(){
             var query = document.getElementById("query").value;
             var data = document.getElementById("search").value;
@@ -74,7 +79,7 @@
                 <td th:text="${member.birthdate}"></td>
                 <td th:text="${member.point}"></td>
                 <td th:text="${member.gradeId}"></td>
-                <td><button>수정</button></td>
+                <td><button th:onclick="updateMember([[${member.memberId}]])">수정</button></td>
                 <td><button>삭제</button></td>
 <!--            </tr>-->
         </th>

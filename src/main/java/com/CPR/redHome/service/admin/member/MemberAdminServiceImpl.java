@@ -27,6 +27,12 @@ public class MemberAdminServiceImpl implements MemberAdminService {
         return memberAdminMapper.selectAllMembers();
     }
 
+    // memberId로 회원 조회
+    @Override
+    public MemberDto selectMemberById(int memberId) {
+        return memberAdminMapper.selectMemberById(memberId);
+    }
+
 
     // 연령대 별 회원 수 조회
     @Override

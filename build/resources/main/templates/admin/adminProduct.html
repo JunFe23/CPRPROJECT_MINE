@@ -7,13 +7,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-        function deleteProduct(no){
-            location.href = "/adminProduct/delete?no=" + no;
+        function deleteProduct(no, productTitle){
+            if(!confirm("정말로 상품 \""+productTitle+"\"를 삭제하시겠습니까?")){
+                alert("상품 삭제를 취소하셨습니다.");
+            }else{
+                location.href = "/admin/product/delete/" + no;
+                alert("상품을 삭제하였습니다.");
+            }
+
         }
 
-        function editProduct(){
-            // location.href = "/admin/product/modify/" + no;
-            location.href = "/admin/product/modify";
+        function updateProduct(no){
+            location.href = "/admin/product/update/" + no;
+
         }
 
         function searchBtn(){
@@ -82,8 +88,8 @@
                 <td th:text="${product.productQuantity}"></td>
                 <td th:text="${product.productThemeId}"></td>
                 <td th:text="${product.productCategoryId}"></td>
-                <td><button th:onclick="editProduct()">수정</button></td>
-                <td><button onclick="deleteProduct(${product.product_num})">삭제</button></td>
+                <td><button th:onclick="updateProduct([[${product.productId}]])">수정</button></td>
+                <td><button th:onclick="deleteProduct([[${product.productId}]],[[${product.productTitle}]])">삭제</button></td>
             </tr>
         </tbody>
     </table>

@@ -12,6 +12,8 @@ public interface MemberAdminService {
     // 전체 회원 조회
     List<MemberDto> selectAllMembers();
 
+    // memberId로 회원 조회
+    MemberDto selectMemberById(int memberId);
 
     // @@@@@@@ 회원 통계 @@@@@@@@
     // 연령대 별 회원 수 조회

@@ -3,10 +3,8 @@
 
 <mapper namespace="com.CPR.redHome.mapper.admin.member.MemberAdminMapper">
 
-    <!-- 전체 회원 조회. -->
-    <select id="selectAllMembers" resultType="com.CPR.redHome.dto.member.MemberDto">
-        select
-            member_id as memberId
+    <sql id="memberColumns">
+        member_id as memberId
             ,account_id as accountId
             ,member_password as memberPassword
             ,name as name
@@ -18,7 +16,24 @@
             ,point as point
             ,role as role
             ,grade_id as gradeId
-        from member
+    </sql>
+
+    <!-- 전체 회원 조회. -->
+    <select id="selectAllMembers" resultType="com.CPR.redHome.dto.member.MemberDto">
+        SELECT
+            <include refid="memberColumns"/>
+        FROM
+             member
+    </select>
+
+    <!-- memberId 해당 회원 조회 -->
+    <select id="selectMemberById" parameterType="Integer" resultType="com.CPR.redHome.dto.member.MemberDto">
+        SELECt
+            <include refid="memberColumns"/>
+        FROM
+             member
+        WHERE
+            member_id = #{memberId}
     </select>
 
     <!-- 연령대 별 회원 조회 -->

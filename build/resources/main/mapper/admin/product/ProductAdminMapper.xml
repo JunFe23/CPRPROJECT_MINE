@@ -3,10 +3,9 @@
 
 <mapper namespace="com.CPR.redHome.mapper.admin.product.ProductAdminMapper">
 
-    <!-- 전체 상품 조회. -->
-    <select id="selectAllProducts" resultType="com.CPR.redHome.dto.product.ProductDto">
-        select
-            product_id as productId
+    <!-- product columns -->
+    <sql id="productColumns">
+        product_id as productId
             ,product_title as productTitle
             ,product_img as productImg
             ,product_price as productPrice
@@ -15,8 +14,49 @@
             ,product_category_id as productCategoryId
             ,member_id as memberId
             ,product_theme_id as productThemeId
-        from product
+    </sql>
+
+    <!-- 전체 상품 조회. -->
+    <select id="selectAllProducts" resultType="com.CPR.redHome.dto.product.ProductDto">
+        SELECT
+            <include refid="productColumns"/>
+        FROM product
     </select>
+
+    <!-- productId로 상품 조회 -->
+    <select id="selectProductByProductId" parameterType="Integer" resultType="com.CPR.redHome.dto.product.ProductDto">
+        SELECT
+            <include refid="productColumns"/>
+        FROM
+            product
+        WHERE
+            product_id = #{value}
+    </select>
+
+    <update id="updateProduct" parameterType="com.CPR.redHome.dto.product.ProductDto">
+        UPDATE
+            product
+        SET
+            product_title = #{productTitle}
+            ,product_img = #{productImg}
+            ,product_price = #{productPrice}
+            ,product_delivery_charge = #{productDeliveryCharge}
+            ,product_quantity = #{productQuantity}
+            ,product_theme_id = #{productThemeId}
+            ,product_category_id = #{productCategoryId}
+        WHERE
+            product_id = #{productId}
+    </update>
+
+    <!-- 상품 delete -->
+    <delete id="deleteProduct" parameterType="Integer">
+        DELETE FROM
+            product
+        WHERE
+            product_id = #{productId}
+    </delete>
+
+
 
     <!-- 가격대 별 상품 수 조회 -->
     <select id="selectProductByPrice" resultType="java.util.LinkedHashMap">
