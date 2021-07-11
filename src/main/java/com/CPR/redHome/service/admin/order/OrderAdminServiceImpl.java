@@ -17,8 +17,21 @@ public class OrderAdminServiceImpl implements OrderAdminService{
     private final OrderAdminMapper orderAdminMapper;
     private final MakeJsonForChartServcie makeJsonForChartServcie;
 
+    // 전체 주문 조회
     @Override
     public List<OrderDto> SelectAllOrders() {
-        return null;
+        return orderAdminMapper.selectAllOrders();
+    }
+
+    // 선택 주문 조회
+    @Override
+    public OrderDto selectOrderByOrderId(int orderId) {
+        return orderAdminMapper.selectOrderById(orderId);
+    }
+
+    // 수정 주문 update
+    @Override
+    public void updateOrder(OrderDto orderDto) {
+        orderAdminMapper.updateOrder(orderDto);
     }
 }

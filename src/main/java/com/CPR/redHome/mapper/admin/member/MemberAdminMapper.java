@@ -16,6 +16,9 @@ public interface MemberAdminMapper {
     // memberId로 회원 조회
     MemberDto selectMemberById(int memberId);
 
+    // 수정 member update
+    void updateMember(MemberDto memberDto);
+
     // 나이대 별 회원 수 조회
     LinkedHashMap<String, Integer> selectMemberByAge();
 

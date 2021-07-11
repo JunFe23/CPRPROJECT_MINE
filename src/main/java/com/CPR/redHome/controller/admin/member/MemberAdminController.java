@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -34,6 +35,14 @@ public class MemberAdminController {
         model.addAttribute("memberDetails",memberAdminService.selectMemberById(memberId));
         return "admin/member/memberUpdate";
     }
+    
+    // member 수정 내용 update
+    @Transactional
+    @PostMapping("/admin/member/update")
+    public String adminMemberUpdate(MemberDto memberDto){
+        memberAdminService.updateMember(memberDto);
+        return "redirect:/admin/member";
+    }
 
     // 멤버페이지 통계
     @GetMapping("admin/member/chart")
@@ -56,17 +65,4 @@ public class MemberAdminController {
         return "admin/adminQna";
     }
 
-
-
-    // 상품 등록
-    @GetMapping("/adminMember/adminProduct/enroll")
-    public String adminProductEnroll() {
-        return "admin/product/productRegist";
-    }
-
-    // 상품 수정
-    @GetMapping("/adminMember/adminProduct/edit")
-    public String adminProductEdit() {
-        return "productModify";
-    }
 }

@@ -15,6 +15,9 @@ public interface MemberAdminService {
     // memberId로 회원 조회
     MemberDto selectMemberById(int memberId);
 
+    // 수정된 member update
+    void updateMember(MemberDto memberDto);
+
     // @@@@@@@ 회원 통계 @@@@@@@@
     // 연령대 별 회원 수 조회
     JSONObject selectMemberByAge();

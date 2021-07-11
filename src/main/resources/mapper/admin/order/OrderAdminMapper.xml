@@ -3,37 +3,51 @@
 
 <mapper namespace="com.CPR.redHome.mapper.admin.order.OrderAdminMapper">
 
+    <!-- order columns -->
+    <sql id="orderColumns">
+        o.order_id as orderId
+            ,o.order_number as orderNumber
+            ,m.account_id as accountId
+            ,o.order_receiver as receiver
+            ,o.order_date as orderDate
+            ,o.order_unit_price as price
+            ,o.order_delivery_charge as deliveryCharge
+            ,o.order_state as orderState
+            ,o.order_request as orderRequest
+            ,o.order_point_used as usedPoint
+    </sql>
+    
     <!-- 전체 주문 조회. -->
     <select id="selectAllOrders" resultType="com.CPR.redHome.dto.cart.OrderDto">
-
-        // javscript ajax로 json데이터 전송 시 필요한 객체들 생성
-    private String orderId;
-    private Long gradeId;
-
-        // 해당 계정 정보
-    private Integer currentPoint; // 현재 포인트
-    private Double usedPoint;   // 사용한 포인트
-    private Integer accumulationRate; // 적립금
-
-    private String phoneNumber; // 구매자 정보 : 핸드폰 번호
-    private String accountId;   // 구매자 정보 : 계정 아이디 (뷰단에서 사용)
-    private String address;     // 주소
-    private String receiver;     //받는 사람
-    private String orderRequest; //주문 요청 사항
-    private String email;
-
         select
-            order_id as orderId
-            ,product_title as productTitle
-            ,product_img as productImg
-            ,product_price as productPrice
-            ,product_delivery_charge as productDeliveryCharge
-            ,product_quantity as productQuantity
-            ,product_category_id as productCategoryId
-            ,member_id as memberId
-            ,product_theme_id as productThemeId
-        from product
+            <include refid="orderColumns"/>
+        from
+             orders o, member m
+        where
+            o.member_id = m.member_id
     </select>
+
+    <!-- 선택 주문 조회 -->
+    <select id="selectOrderById" parameterType="Integer" resultType="com.CPR.redHome.dto.cart.OrderDto">
+        SELECT
+            <include refid="orderColumns"/>
+        FROM
+            orders o, member m
+        WHERE
+            o.member_id = m.member_id AND o.order_id = #{value}
+    </select>
+
+    <!-- 수정 주문 update -->
+    <update id="updateOrder" parameterType="com.CPR.redHome.dto.cart.OrderDto">
+        UPDATE
+            orders
+        SET
+            order_receiver = #{receiver}
+          ,order_state = #{orderState}
+          ,order_request = #{orderRequest}
+        WHERE
+            order_number = #{orderNumber}
+    </update>
 
 
 

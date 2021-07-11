@@ -28,13 +28,25 @@
 
     <!-- memberId 해당 회원 조회 -->
     <select id="selectMemberById" parameterType="Integer" resultType="com.CPR.redHome.dto.member.MemberDto">
-        SELECt
+        SELECT
             <include refid="memberColumns"/>
         FROM
              member
         WHERE
             member_id = #{memberId}
     </select>
+
+    <!-- 수정 member update -->
+    <update id="updateMember" parameterType="com.CPR.redHome.dto.member.MemberDto">
+        UPDATE
+            member
+        SET
+            point = #{point}
+          ,grade_id = #{gradeId}
+          ,role = #{role}
+        WHERE
+            member_id = #{memberId}
+    </update>
 
     <!-- 연령대 별 회원 조회 -->
     <select id="selectMemberByAge" resultType="java.util.LinkedHashMap">

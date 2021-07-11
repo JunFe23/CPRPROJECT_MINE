@@ -33,6 +33,12 @@ public class MemberAdminServiceImpl implements MemberAdminService {
         return memberAdminMapper.selectMemberById(memberId);
     }
 
+    // 수정된 member update
+    @Override
+    public void updateMember(MemberDto memberDto) {
+        memberAdminMapper.updateMember(memberDto);
+    }
+
 
     // 연령대 별 회원 수 조회
     @Override
