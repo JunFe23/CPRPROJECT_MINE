@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 @Log4j2
 public class MainAdminController {
-    //관리자 메인 페이지 css
-    @GetMapping("/adminMain")
-    public String adminMain() { return "admin/adminMain";}
-
     // 관리자 메인 페이지
     @GetMapping("/admin")
     public String adminHome(){
