@@ -20,10 +20,7 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 
     private final MemberAdminMapper memberAdminMapper;
     private final MakeJsonForChartServcie makeJsonForChartServcie;
-    Criteria criteria;
-    Pagination pagination;
 
-    // 오늘
     @Override
     public int countAll(Criteria criteria) {
         int cnt = memberAdminMapper.selectTotalCnt(criteria);
@@ -38,16 +35,6 @@ public class MemberAdminServiceImpl implements MemberAdminService {
         return memberDtos;
     }
 
-
-
-
-
-    // 전체회원 조회
-    @Override
-    public List<MemberDto> selectAllMembers() {
-        return memberAdminMapper.selectAllMembers();
-    }
-
     // memberId로 회원 조회
     @Override
     public MemberDto selectMemberById(int memberId) {
@@ -60,7 +47,32 @@ public class MemberAdminServiceImpl implements MemberAdminService {
         memberAdminMapper.updateMember(memberDto);
     }
 
+    // member delete
+    @Override
+    public void deleteMember(int memberId) {
+        memberAdminMapper.deleteMember(memberId);
+    }
 
+    // 판매자 신청
+    @Override
+    public void updateMemberRole(String accountId) {
+        memberAdminMapper.updateMemberRole(accountId);
+    }
+
+    // 판매자 권한 승인
+    @Override
+    public void permitNewSeller(int memberId) {
+        memberAdminMapper.permitNewSellr(memberId);
+    }
+
+    // 판매자 권한 반려
+    @Override
+    public void rejectNewSeller(int memberId) {
+        memberAdminMapper.rejectNewSellr(memberId);
+    }
+
+
+    // @@@@@@@@@@@통계 부분@@@@@@@@@@@2
     // 연령대 별 회원 수 조회
     @Override
     public JSONObject selectMemberByAge() {

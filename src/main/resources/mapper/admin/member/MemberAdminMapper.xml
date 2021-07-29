@@ -16,6 +16,24 @@
         <if test="searchType == 'search_memberLevel'">
             grade_id like CONCAT('%',#{searchKeyword},'%')
         </if>
+        <if test="searchType == 'search_memberRole'">
+            role like CONCAT('%',#{searchKeyword},'%')
+        </if>
+    </sql>
+
+    <sql id="memberColumns">
+        member_id as memberId
+            ,account_id as accountId
+            ,member_password as memberPassword
+            ,name as name
+            ,telephone as telephone
+            ,email as email
+            ,created_date as createdDate
+            ,address as address
+            ,birthdate as birthdate
+            ,point as point
+            ,role as role
+            ,grade_id as gradeId
     </sql>
 
     <select id="selectTotalCnt" resultType="java.lang.Integer">
@@ -47,40 +65,14 @@
                 <if test="criteria.searchType == 'search_memberLevel'">
                     grade_id like CONCAT('%',#{criteria.searchKeyword},'%')
                 </if>
+                <if test="criteria.searchType == 'search_memberRole'">
+                    role like CONCAT('%',#{criteria.searchKeyword},'%')
+                </if>
             </if>
 
         </where>
         limit #{firstRecordIndex}, #{criteria.recordsPerPage}
     </select>
-
-
-
-
-
-
-
-    <sql id="memberColumns">
-        member_id as memberId
-            ,account_id as accountId
-            ,member_password as memberPassword
-            ,name as name
-            ,telephone as telephone
-            ,email as email
-            ,created_date as createdDate
-            ,address as address
-            ,birthdate as birthdate
-            ,point as point
-            ,role as role
-            ,grade_id as gradeId
-    </sql>
-
-    <!-- 전체 회원 조회. -->
-<!--    <select id="selectAllMembers" resultType="com.CPR.redHome.dto.member.MemberDto">-->
-<!--        SELECT-->
-<!--            <include refid="memberColumns"/>-->
-<!--        FROM-->
-<!--             member-->
-<!--    </select>-->
 
     <!-- memberId 해당 회원 조회 -->
     <select id="selectMemberById" parameterType="Integer" resultType="com.CPR.redHome.dto.member.MemberDto">
@@ -103,6 +95,45 @@
         WHERE
             member_id = #{memberId}
     </update>
+
+    <!-- member delete -->
+    <delete id="deleteMember" parameterType="Integer">
+        DELETE FROM
+            member
+        WHERE
+            member_id = #{memberId}
+    </delete>
+
+    <!-- member 판매자 신청 -->
+    <update id="updateMemberRole" parameterType="String">
+        UPDATE
+            member
+        SET
+            role = 'APPLY_SELLER'
+        WHERE
+            account_id = #{accountId}
+    </update>
+
+    <!-- 판매 권한 승인 -->
+    <update id="permitNewSellr" parameterType="Integer">
+        UPDATE
+            member
+        SET
+            role = 'SELLER'
+        WHERE
+            member_id = #{memberId}
+    </update>
+
+    <!-- 판매 권한 반려-->
+    <update id="rejectNewSellr" parameterType="Integer">
+        UPDATE
+            member
+        SET
+            role = 'ROLE_USER'
+        WHERE
+            member_id = #{memberId}
+    </update>
+
 
     <!-- 연령대 별 회원 조회 -->
     <select id="selectMemberByAge" resultType="java.util.LinkedHashMap">
