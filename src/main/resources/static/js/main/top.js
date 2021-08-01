@@ -12,6 +12,16 @@ function myOut(){
 }
 
 
+function myOn2(){
+    document.getElementById("popup2").style['display'] = 'block';
+    document.getElementById("popup2").style['display'] = 'block';
+}
+
+function myOut2(){
+    document.getElementById("popup2").style['display'] = 'none';
+}
+
+
 function storeSearch(){
     console.log('검색');
 
