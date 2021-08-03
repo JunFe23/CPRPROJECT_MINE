@@ -1,6 +1,7 @@
 package com.CPR.redHome.controller.seller;
 
 import com.CPR.redHome.dto.member.MemberDto;
+import com.CPR.redHome.dto.product.ProductViewDto;
 import com.CPR.redHome.dto.seller.ProductRegistDto;
 import com.CPR.redHome.service.product.ProductService;
 import com.CPR.redHome.service.seller.SellerService;
@@ -21,7 +22,6 @@ import java.util.List;
 public class SellerController {
 
     private final SellerService sellerService;
-    private final ProductService productService;
 
     @GetMapping("/product/regist")
     public String registProduct(@Login MemberDto loginMember, Model model) {
@@ -38,13 +38,6 @@ public class SellerController {
         sellerService.registProducts(productRegistDto.get(0));
         sellerService.registImage(productRegistDto);
 
-    }
-
-    // 판매자 페이지 이동.
-    @GetMapping("/seller/{memberId}")
-    public String goSellerPage(@PathVariable int memberId, Model model){
-
-        return "seller/sellerStore";
     }
 
 }

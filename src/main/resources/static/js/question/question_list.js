@@ -19,6 +19,18 @@ function writeQuestion(){
 
 }
 
+function writeAnswer(){
+    let productId = document.getElementById("productId").value;
+    let questionId = document.getElementById("questionId").value;
+    let sessionUser_ = document.getElementById("memberId").value;
+    if(sessionUser_ == null || sessionUser_ == ''){
+        alert('로그인 후 문의 글 작성이 가능합니다.');
+        location.href ='/login';
+    }else{
+        location.href = '/answer/add?productId='+productId+'&questionId='+questionId;
+    }
+}
+
 
 function questionDelete(questionId){
     let productId_ = document.getElementById("productId").value;

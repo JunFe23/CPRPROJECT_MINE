@@ -25,6 +25,14 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public QuestionViewDto selectQuestion(Long questionId) {
+
+        QuestionViewDto questionViewDto = questionMapper.selectQuestion(questionId);
+
+        return questionViewDto;
+    }
+
+    @Override
     public int countAllQuestions(Long productId) {
 
         int questionCnt = questionMapper.selectQuestionCnt(productId);
@@ -37,6 +45,11 @@ public class QuestionServiceImpl implements QuestionService {
 
         questionMapper.insertQuestion(questionDto);
 
+    }
+
+    @Override
+    public void updateQuestionState(Long questionId) {
+        questionMapper.updateQuestionState(questionId);
     }
 
     @Override

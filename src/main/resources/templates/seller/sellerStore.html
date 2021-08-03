@@ -11,7 +11,7 @@
 <body>
 
 <!-- 페이지 상단 -->
-<th:block th:include="/fragments/top.html"></th:block>
+<th:block th:include="/seller/sellerTop.html"></th:block>
 
 <!--배너-->
 <th:block th:include="/fragments/banner.html"></th:block>
@@ -19,6 +19,11 @@
 
 <!--제품 리스트-->
 
+<br>
+<input type="text" id="memberId" th:value="${session.loginMember.memberId}" hidden="hidden">
+<div align="center" style="color: #f76565">
+  <h2>내 판매 상품</h2>
+</div>
 <br>
 
 <div class="store_option">
@@ -106,12 +111,13 @@
 <script>
 
   function commonSubmit(){
+    let memberId = document.getElementById('memberId').value;
     let productThemeNo_ = document.getElementById("productThemeNo").value;
     let searchProductKeyword_ = document.getElementById("searchProductKeyword").value;
     let deliveryChargeOPtion_ = document.getElementById("deliveryChargeOPtion").value;
     let storeOrder_ = document.getElementById("storeOrder").value;
 
-    location.href='/store?deliveryChargeOPtion='+deliveryChargeOPtion_+'&storeOrder='+storeOrder_+'&productThemeNo='+productThemeNo_+'&searchProductKeyword='+searchProductKeyword_;
+    location.href='/seller/'+memberId+'?deliveryChargeOPtion='+deliveryChargeOPtion_+'&storeOrder='+storeOrder_+'&productThemeNo='+productThemeNo_+'&searchProductKeyword='+searchProductKeyword_;
 
   }
 

@@ -31,6 +31,14 @@
 
 }
 
+.product-answer__wrap__sub-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #292929;
+    margin-bottom: 16px;
+
+}
+
 .product-question__wrap__type-select__box {
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
@@ -80,6 +88,10 @@ select.form-control[multiple], textarea.form-control {
 }
 
 .product-question__wrap__question {
+    min-height: 110px;
+}
+
+.product-answer__wrap__answer {
     min-height: 110px;
 }
 

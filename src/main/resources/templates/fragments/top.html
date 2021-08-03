@@ -93,7 +93,7 @@
                                 </div>
                         </th:block>
                         <div class="drop-down layout-navigation-bar-upload-button">
-                            <button class="layout-navigation-bar-upload-button__button" onclick="myOn2()" ondblclick="myOut2()">
+                            <button class="layout-navigation-bar-upload-button__button" onclick="myOn2()">
                                 글쓰기
                             </button>
                         </div>
@@ -181,46 +181,23 @@
    </div>
 
     <div id="popup2" class="popout popout--prepared popout--axis-1 popout--dir-0 popout--cross-dir-2" data-popout="true"
-         style="position: absolute; z-index: 1000; right: 230px; bottom: 380px; display: none;">
+         style="position: absolute; z-index: 1000; right: 230px; bottom: 380px; display: none;" th:if="${session.loginMember} != null">
         <div class="animated-popout drop-down__content layout-navigation-bar-user-section__content open open-active">
             <ul class="layout-navigation-bar-user-menu">
+                <th:block th:if="${session.loginMember} != null">
                 <li class="layout-navigation-bar-user-menu__item-wrap">
                 <li class="layout-navigation-bar-user-menu__item-wrap">
-                    <a class="layout-navigation-bar-user-menu__item" href="/mypage">마이페이지</a>
+                    <a class="layout-navigation-bar-user-menu__item" href="/community/add">커뮤니티에 질문하기</a>
                 </li>
                 </li>
+                </th:block>
+                <th:block th:if="${session.loginMember} != null">
                 <li class="layout-navigation-bar-user-menu__item-wrap">
                 <li class="layout-navigation-bar-user-menu__item-wrap">
-                    <a class="layout-navigation-bar-user-menu__item" href="/user_shopping_pages/order_list">나의 쇼핑</a>
+                    <a class="layout-navigation-bar-user-menu__item" th:if="${session.loginMember.role} == 'SELLER'" href="/product/regist">상품 올리기</a>
                 </li>
                 </li>
-                <li class="layout-navigation-bar-user-menu__item-wrap">
-                <li class="layout-navigation-bar-user-menu__item-wrap">
-                    <a class="layout-navigation-bar-user-menu__item" href="/competitions/feed">이벤트</a>
-                </li>
-                </li>
-                <li class="layout-navigation-bar-user-menu__item-wrap">
-                <li class="layout-navigation-bar-user-menu__item-wrap">
-                    <a class="layout-navigation-bar-user-menu__item"
-                       href="https://pro.ohou.se/?utm_source=ohouse&amp;utm_medium=web&amp;utm_campaign=prosignup&amp;utm_content=myhome">전문가
-                        신청</a>
-                </li>
-                </li>
-                <li class="layout-navigation-bar-user-menu__item-wrap">
-                <li class="layout-navigation-bar-user-menu__item-wrap">
-                    <a class="layout-navigation-bar-user-menu__item" th:if="${session.loginMember}!=null" th:onclick="applyNewSeller([[${session.loginMember.getAccountId()}]],[[${session.loginMember.getRole()}]])">판매자 신청</a>
-                </li>
-                </li>
-                <li class="layout-navigation-bar-user-menu__item-wrap">
-                <li class="layout-navigation-bar-user-menu__item-wrap">
-                    <form th:unless="${session.loginMember}==null" th:action="@{/logout}" method="post">
-                        <button class="layout-navigation-bar-user-menu__item" type="submit" th:method="post"
-                                th:action="@{/logout}">
-                            로그아웃
-                        </button>
-                    </form>
-                </li>
-                </li>
+                </th:block>
             </ul>
         </div>
     </div>

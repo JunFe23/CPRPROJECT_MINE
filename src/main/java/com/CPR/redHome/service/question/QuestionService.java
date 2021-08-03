@@ -10,9 +10,13 @@ public interface QuestionService {
 
     List<QuestionViewDto> selectQuestionList(Long productId, int firstRecordIndex, Criteria criteria);
 
+    QuestionViewDto selectQuestion(Long questionId);
+
     int countAllQuestions(Long productId);
 
     void insertQuestion(QuestionDto questionDto);
+
+    void updateQuestionState(Long questionId);
 
     void deleteQuestion(Long questionId);
 
